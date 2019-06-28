@@ -64,7 +64,15 @@ class Processor():
         self.csv_file.close()
 
 if __name__ == "__main__":
+
     AGGREGATOR = Processor()
     AGGREGATED_NETWORKS = AGGREGATOR.aggregate_networks()
     AGGREGATED_PRODUCTS = AGGREGATOR.aggregate_product(AGGREGATED_NETWORKS)
     print(AGGREGATED_PRODUCTS)
+
+    with open('Output.csv','w')as writeFile:
+        writer = csv.writer(writeFile)
+        for row in AGGREGATED_PRODUCTS:
+            writer.writerow(row)
+
+    writeFile.close()
